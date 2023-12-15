@@ -5,24 +5,29 @@
 ## Pré-requisitos
 - Neo4j instalado e em execução
 - Python3 instalado
+- Docker instalado e em execução.
 
 ## Passos para Execução
 1. Clone este repositório.
 2. Certifique-se de ter o Neo4j instalado e em execução.
-3. No terminal, navegue até o diretório do projeto.
-4. Execute o comando para instalar as dependências Python:
+3. Se não tiver. Pode executar o comando, que vai instalar automaticamente: 
+     ```bash
+    docker-compose up -d
+    ```
+4. No terminal, navegue até o diretório do projeto.
+5. Execute o comando para instalar as dependências Python:
 
     ```bash
     pip install -r requirements.txt
     ```
 
-5. Execute o script Python para executar a atividade A5:
+6. Execute o script Python para executar a atividade A5:
 
     ```bash
     python atividade5.py
     ```
 
-6. Após a execução do script, você pode verificar os dados do Exercicio 01, 02 e 03.
+7. Após a execução do script, você pode verificar os dados do Exercicio 01, 02 e 03.
 
 ## Dependências
 
