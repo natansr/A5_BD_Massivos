@@ -5,7 +5,7 @@
 ## Pré-requisitos
 - Neo4j instalado e em execução
 - Python3 instalado
-- Docker em instalado e em execução.
+- Docker instalado e em execução.
 
 ## Passos para Execução
 1. Clone este repositório.
