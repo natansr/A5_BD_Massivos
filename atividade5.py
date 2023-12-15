@@ -19,6 +19,11 @@ password = "senacsenac"
 def exercicio1(uri, username, password, csv_file):
     driver = GraphDatabase.driver(uri, auth=(username, password))
 
+
+    with driver.session() as session:
+        session.write_transaction(delete_all_nodes_and_relationships)    
+
+
     print("Inserindo dados do CSV - Exercicio 01")
     with open(csv_file, 'r', newline='', encoding='utf-8') as file:
         csv_reader = csv.reader(file)
@@ -42,8 +47,8 @@ def exercicio1(uri, username, password, csv_file):
         session.read_transaction(select_and_display_data_ex1)
 
     # Depois exclui todos os nodos e relacionamentos desse exercicio1
-    with driver.session() as session:
-        session.write_transaction(delete_all_nodes_and_relationships)    
+    #with driver.session() as session:
+        #session.write_transaction(delete_all_nodes_and_relationships)    
         
     driver.close()
 
@@ -100,10 +105,30 @@ def exercicio2(uri, username, password, csv_file):
         with driver.session() as session:
             for row in csv_reader:
                 #print(row)
-                nome_doador, cpf_doador, _, _, data, protocolo, valor, tipo, _, governador, _, _, partido, cidade, _, _ = row
-                session.write_transaction(create_doador_ex2, nome_doador, cpf_doador)
-                session.write_transaction(create_recebedor_governador_ex2, governador, partido)
+                nome_doador, cpf_doador, _, _, data, protocolo, valor, tipo, _, governador, governador_number, partido_check, partido, cidade, _, _ = row
 
+                #Os dados do CSV estão errados. Então tive que fazer varios ajustes (Desculpe pelas gambiarras! rsrsrs).
+                if governador[0].isdigit():
+
+
+
+                    session.write_transaction(create_doador_ex2, nome_doador, cpf_doador)
+
+                    if "Governador" in partido:
+                        partido = cidade
+                    
+                    session.write_transaction(create_recebedor_governador_ex2, governador_number, partido)
+                    session.write_transaction(create_relacionamento_ex2, nome_doador, governador_number, valor)
+
+                else:
+                    session.write_transaction(create_doador_ex2, nome_doador, cpf_doador)
+                    if "Governador" in partido:
+                        partido = cidade
+                    session.write_transaction(create_recebedor_governador_ex2, governador, partido)
+                    session.write_transaction(create_relacionamento_ex2, nome_doador, governador, valor)
+
+
+                
 
     # Primeiro apresenta os relacionamentos desse exercicio2
     with driver.session() as session:
@@ -133,7 +158,7 @@ def create_recebedor_governador_ex2(tx, nome, partido):
     tx.run(query)
 
 #Função para criar os relacionamentos (Doador para Governador)
-def create_relacionamento(tx, doador_nome, governador, valor):
+def create_relacionamento_ex2(tx, doador_nome, governador, valor):
     query = (
         f"MATCH (d:Doador {{nome: '{doador_nome}'}})"
         f"MATCH (g:Governador {{nome: '{governador}'}})"
@@ -152,7 +177,7 @@ def select_and_display_data_ex2(tx):
     result = tx.run(query)
     for record in result:
 
-        print(f"Doador: {record['Doador']}, Recebedor: {record['Recebedor']}, Valor: {record['Valor']}")
+        print(f"Doador: {record['Doador']}, Governador: {record['Governador']}, Valor: {record['Valor']}")
 
 
 
