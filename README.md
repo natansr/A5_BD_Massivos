@@ -9,7 +9,7 @@
 ## Passos para Execução
 1. Clone este repositório.
 2. Certifique-se de ter o Neo4j instalado e em execução.
-2.1 Se não tiver. Pode executar o comando, que vai instalar automaticamente: 
+3. Se não tiver. Pode executar o comando, que vai instalar automaticamente: 
      ```bash
     docker-compose up -d
     ```
