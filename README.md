@@ -37,9 +37,9 @@ Certifique-se de ter o Neo4j instalado e configurado corretamente antes de execu
 ### Python
 Você precisará do Python3 instalado para executar o script de importação. Você pode baixar o Python em [python.org](https://www.python.org/downloads/) e seguir as instruções de instalação.
 
-## Prints Finais
+## Grafo Final
 
-![Exemplo de Execução](caminho/screenshot.png)
+![Grafo](graph.png)
 
 ## Contato
 
