@@ -43,5 +43,5 @@ Você precisará do Python3 instalado para executar o script de importação. Vo
 
 ## Contato
 
-Para quaisquer dúvidas ou informações adicionais, entre em contato conosco em [natan5souza@gmail.com](mailto:natan5souza@gmail.com).
+Para quaisquer dúvidas ou informações adicionais, entre em contato [natan5souza@gmail.com](mailto:natan5souza@gmail.com).
 
